@@ -193,13 +193,9 @@ void Trinage_background()
         ImRotateEnd(partile_rotate[i]);
     }
 }
-int selectedOption = 0;
-std::string cimodkey = "https://t0pgamemurah.xyz/freeKey";
-std::string xyzBuyKey = "https://t0pgamemurah.xyz/freeKey";
-
 void DrawMenu() {
-	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-	ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+    const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
+    ImVec2 center = ImGui::GetMainViewport()->GetCenter();
     ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
     ImGui::SetNextWindowSize(ImVec2(650, 680), ImGuiCond_FirstUseEver);
 
@@ -208,9 +204,6 @@ void DrawMenu() {
     static float window_scale;
     if (!window_scale) window_scale = 1.0f;
     io.FontGlobalScale = window_scale;
-
-    static bool isSave = false;
-    static char s[64];
 
     static bool isPopUpHide = false;
     HideMenu(isPopUpHide);
@@ -223,31 +216,31 @@ void DrawMenu() {
         window_flags = ImGuiWindowFlags_None;
     }
 
-    std::string FULLTITLE = std::string("TMH") + std::string(" | ") + clientManager.c_str() + std::string(" | ") + std::string(ABI);
+    std::string FULLTITLE = std::string("TMH") + std::string(" | ") + std::string("ABI");
     if (!ImGui::Begin(FULLTITLE.c_str(), 0, window_flags)) {
         ImGui::End();
         return;
     }
 
     using namespace ImGui;
-	ImGui::SetNextWindowSize(ImVec2((float) glWidth * 0.3f, (float) glHeight * 0.5f), ImGuiCond_Once); // 45% width 70% height
-	
-	if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-		if (selectedFeatures == 1 | selectedFeatures == 2){
-			if (ImGui::BeginTabItem("ESP")) {
-            	if (ImGui::CollapsingHeader("Player")) {
-                	if (ImGui::BeginTable("ESPPlayer", 3)) {
-                    	ImGui::TableNextColumn();	ImGui::Checkbox(" Player Line", &Config.ESP.Player.Line);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Player Box", &Config.ESP.Player.Box);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Player Name", &Config.ESP.Player.Name);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Player Hero", &Config.ESP.Player.Hero);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Player Health", &Config.ESP.Player.Health);
-						ImGui::TableNextColumn();	ImGui::Checkbox(" Player Distance", &Config.ESP.Player.Distance);
-						ImGui::TableNextColumn();	ImGui::Checkbox(" Player Locator", &Config.ESP.Player.Locator2);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Hero Alert", &Config.ESP.Player.Alert);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Icon Hero", &Config.ESP.Player.HeroZ);
-                        ImGui::TableNextColumn();	ImGui::Checkbox(" Visible Check", &Config.ESP.Player.Visible);
-                        ImGui::TableNextColumn();	ImGui::Spacing();
+    ImGui::SetNextWindowSize(ImVec2((float) glWidth * 0.3f, (float) glHeight * 0.5f), ImGuiCond_Once);
+
+    if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
+        if (selectedFeatures == 1 | selectedFeatures == 2) {
+            if (ImGui::BeginTabItem("ESP")) {
+                if (ImGui::CollapsingHeader("Player")) {
+                    if (ImGui::BeginTable("ESPPlayer", 3)) {
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Player Line", &Config.ESP.Player.Line);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Player Box", &Config.ESP.Player.Box);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Player Name", &Config.ESP.Player.Name);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Player Hero", &Config.ESP.Player.Hero);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Player Health", &Config.ESP.Player.Health);
+						ImGui::TableNextColumn(); ImGui::Checkbox(" Player Distance", &Config.ESP.Player.Distance);
+						ImGui::TableNextColumn(); ImGui::Checkbox(" Player Locator", &Config.ESP.Player.Locator2);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Hero Alert", &Config.ESP.Player.Alert);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Icon Hero", &Config.ESP.Player.HeroZ);
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Visible Check", &Config.ESP.Player.Visible);
+                        ImGui::TableNextColumn(); ImGui::Spacing();
                         ImGui::EndTable();
                     }
                 }
