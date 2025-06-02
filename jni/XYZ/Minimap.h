@@ -11,8 +11,8 @@ using namespace Minimap;
 
 Vector2 WorldToMinimap(uint CampType, Vector3 HeroPosition) {
     float angle = (CampType == 2 ? 314.60f : 134.76f) * 0.017453292519943295;
-    float angleCos = (float)std::cos(angle);
-    float angleSin = (float)std::sin(angle);
+    float angleCos = cosf(angle);
+    float angleSin = sinf(angle);
     Vector2 Res0;
     Res0.x = (angleCos * HeroPosition.x - angleSin * (HeroPosition.z * -1)) / 74.11f;
     Res0.y = (angleSin * HeroPosition.x + angleCos * (HeroPosition.z * -1)) / 74.11f;
