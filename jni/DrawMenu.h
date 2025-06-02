@@ -202,7 +202,6 @@ void Trinage_background()
     }
 }
 int selectedOption = 0;
-success = true;
 
 void DrawMenu() {
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
@@ -286,15 +285,14 @@ void DrawMenu() {
                     }
 
                     if (ImGui::Button("Login", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-                        std::thread login_thread(LoginThread, std::string(s), &isLogin);
-                        login_thread.detach();
+                        
                     }
 					ImGui::Spacing();
 					ImGui::Spacing();
 					if (ImGui::Button("Get a Key", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-        				openURL(g_vm, xyzBuyKey);
+        				
   					}
-                    ImGui::TextColored(RGBA2ImVec4(255, 255, 0, 255), "%s", msg.c_str());
+                    
                     ImGui::Spacing();
                 }
                 ImGui::EndGroupPanel();
