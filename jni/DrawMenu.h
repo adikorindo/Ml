@@ -85,12 +85,6 @@ struct sTheme {
 };
 sTheme Theme{0};
 
-std::string msg;
-
-void LoginThread(const std::string &user_key, bool *success) {
-    msg = Login(g_vm, user_key.c_str(), success);
-}
-
 bool selectedThemes;
 
 inline ImColor main_color(230, 134, 224, 255);
@@ -208,8 +202,7 @@ void Trinage_background()
     }
 }
 int selectedOption = 0;
-std::string cimodkey = "https://t0pgamemurah.xyz/freeKey";
-std::string xyzBuyKey = "https://t0pgamemurah.xyz/freeKey";
+success = true;
 
 void DrawMenu() {
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
@@ -223,7 +216,7 @@ void DrawMenu() {
     if (!window_scale) window_scale = 1.0f;
     io.FontGlobalScale = window_scale;
 
-    static bool isLogin = false, isSave = false;
+    static bool isLogin = true, isSave = false;
     static char s[64];
     if (isLogin && !isSave) {
         SharedPreferences sharedPref(GetJNIEnv(g_vm), "xyourzone_sharedpref");
