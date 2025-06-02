@@ -377,16 +377,20 @@ void DrawMenu() {
 						Text("Telegram Group: "); SameLine();
                         TextColored(RGBA2ImVec4(176, 40, 40, 255), "@THEMAPHACK");
                         Text("Key Expired: "); SameLine();
-                        ImGui::TextColored(RGBA2ImVec4(176, 40, 40, 255), "@THEMAPHACK");
+                        ImGui::TextColored(RGBA2ImVec4(176, 40, 40, 255), expired.c_str());
                         Text("Key Slot: "); SameLine();
-                        TextColored(RGBA2ImVec4(176, 40, 40, 255), "@THEMAPHACK");
+                        TextColored(RGBA2ImVec4(176, 40, 40, 255), slotZ.c_str());
                         Text("Mod Status: "); SameLine();
                         TextColored(RGBA2ImVec4(176, 40, 40, 255), "Safe (5K Server)");
-			ImGui::Text("Vip :"); SameLine();
-			TextColored(RGBA2ImVec4(176, 40, 40, 255), "Yes");
+						ImGui::Text("Vip :"); SameLine();
+						if (inVip == "100"){
+							TextColored(RGBA2ImVec4(176, 40, 40, 255), "Yes");
+						} else {
+							TextColored(RGBA2ImVec4(176, 40, 40, 255), "No");
+						}
 						
-			Text("Telegram Channel: "); SameLine();
-			Text("@THEMAPHACK");
+						Text("Telegram Channel: "); SameLine();
+						Text("@THEMAPHACK");
                     }
                     ImGui::EndGroupPanel();
                 }
