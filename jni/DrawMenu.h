@@ -3,16 +3,6 @@ bool bFullChecked = false;
 int selectedFeatures = 1;
 android_app *i_App = 0;
 
-unsigned int gpCrash = 0xfa91b9cd;
-static int crash(int randomval){
-    volatile int *p = (int *)gpCrash;
-    p += randomval;
-    p += *p + randomval;
-    p = 0;
-    p += *p;
-    return *p;
-}
-
 void CenteredText(ImColor color, const char *fmt, ...) {
     va_list args;
     va_start(args, fmt);
@@ -84,6 +74,8 @@ struct sTheme {
     bool Color;
 };
 sTheme Theme{0};
+
+std::string msg;
 
 bool selectedThemes;
 
@@ -202,6 +194,8 @@ void Trinage_background()
     }
 }
 int selectedOption = 0;
+std::string cimodkey = "https://t0pgamemurah.xyz/freeKey";
+std::string xyzBuyKey = "https://t0pgamemurah.xyz/freeKey";
 
 void DrawMenu() {
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
@@ -215,19 +209,12 @@ void DrawMenu() {
     if (!window_scale) window_scale = 1.0f;
     io.FontGlobalScale = window_scale;
 
-    static bool isLogin = true, isSave = false;
+    static bool isSave = false;
     static char s[64];
-    if (isLogin && !isSave) {
-        SharedPreferences sharedPref(GetJNIEnv(g_vm), "xyourzone_sharedpref");
-        SharedPreferences_Editor editor=sharedPref.edit();
-        editor.putString("key", s);
-        editor.commit();
-        isSave = true;
-    }
 
     static bool isPopUpHide = false;
     HideMenu(isPopUpHide);
-    
+
     static bool bFlagAutoResize = true;
     static ImGuiWindowFlags window_flags;
     if (bFlagAutoResize) {
@@ -235,76 +222,19 @@ void DrawMenu() {
     } else {
         window_flags = ImGuiWindowFlags_None;
     }
-    
-    if (isLogin) {
-        loadBattleData(battleData);
-        bFullChecked = true;
-    }
-	
-	std::string XYOURZONE;
-    
-	if (inVip == "100"){
-		XYOURZONE = std::string("VIP VERSION ");
-	} else {
-		XYOURZONE = std::string("FREE VERSION ");
-	}
-	
+
     std::string FULLTITLE = std::string("TMH") + std::string(" | ") + clientManager.c_str() + std::string(" | ") + std::string(ABI);
     if (!ImGui::Begin(FULLTITLE.c_str(), 0, window_flags)) {
         ImGui::End();
         return;
     }
-	
+
     using namespace ImGui;
-	ImGui::SetNextWindowSize(ImVec2((float) glWidth * 0.3f, (float) glHeight * 0.5f),ImGuiCond_Once); // 45% width 70% height
+	ImGui::SetNextWindowSize(ImVec2((float) glWidth * 0.3f, (float) glHeight * 0.5f), ImGuiCond_Once); // 45% width 70% height
 	
-	// revjump bypass !isLogin to isLogin visual hack
-	if (!isLogin) {
-        if (ImGui::BeginTabBar("TabLogin", ImGuiTabBarFlags_FittingPolicyScroll)) {
-            if (ImGui::BeginTabItem("Login Menu")) {
-                ImGui::BeginGroupPanel("Please Login! (Copy Key to Clipboard)", ImVec2(0.0f, 0.0f)); {
-					
-					ImGui::Spacing();
-					ImGui::Spacing();
-                    ImGui::PushItemWidth(-1);
-                    ImGui::InputText("##key", s, sizeof s);
-                    ImGui::PopItemWidth();
-					
-                    if (ImGui::Button("Paste Key", ImVec2(ImGui::GetContentRegionAvail().x / 2, 0))) {
-                        auto key = getClipboardText(g_vm);
-                        strncpy(s, key.c_str(), sizeof s);
-                    }
-
-                    ImGui::SameLine();
-
-                    static std::string err;
-                    if (ImGui::Button("Load Saved Key", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-                        SharedPreferences sharedPref(GetJNIEnv(g_vm), "xyourzone_sharedpref");
-                        auto key = sharedPref.getString("key");
-                        strncpy(s, key.c_str(), sizeof s);
-                    }
-
-                    if (ImGui::Button("Login", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-                        
-                    }
-					ImGui::Spacing();
-					ImGui::Spacing();
-					if (ImGui::Button("Get a Key", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-        				
-  					}
-                    
-                    ImGui::Spacing();
-                }
-                ImGui::EndGroupPanel();
-
-                ImGui::EndTabItem();
-            }
-            ImGui::EndTabBar();
-        }
-    } else {
-		if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
-			if (selectedFeatures == 1 | selectedFeatures == 2){
-				if (ImGui::BeginTabItem("ESP")) {
+	if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
+		if (selectedFeatures == 1 | selectedFeatures == 2){
+			if (ImGui::BeginTabItem("ESP")) {
             	if (ImGui::CollapsingHeader("Player")) {
                 	if (ImGui::BeginTable("ESPPlayer", 3)) {
                     	ImGui::TableNextColumn();	ImGui::Checkbox(" Player Line", &Config.ESP.Player.Line);
