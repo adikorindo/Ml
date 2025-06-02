@@ -382,10 +382,11 @@ void DrawMenu() {
                         TextColored(RGBA2ImVec4(176, 40, 40, 255), "@THEMAPHACK");
                         Text("Mod Status: "); SameLine();
                         TextColored(RGBA2ImVec4(176, 40, 40, 255), "Safe (5K Server)");
-			ImGui::Text("Vip :"); SameLine();
-			TextColored(RGBA2ImVec4(176, 40, 40, 255), "Yes");
-			Text("Telegram Channel: "); SameLine();
-			Text("@THEMAPHACK");
+						ImGui::Text("Vip :"); SameLine();
+						TextColored(RGBA2ImVec4(176, 40, 40, 255), "Yes");
+						
+						Text("Telegram Channel: "); SameLine();
+						Text("@THEMAPHACK");
                     }
                     ImGui::EndGroupPanel();
                 }
@@ -397,5 +398,4 @@ void DrawMenu() {
 		}
 		ImGui::Separator();
         ImGui::TreePop();
-	}
-}
+    }
