@@ -224,14 +224,13 @@ void DrawMenu() {
     if (!window_scale) window_scale = 1.0f;
     io.FontGlobalScale = window_scale;
 
-    static bool isLogin = false, isSave = false;
+    static bool isLogin = true, isSave = false;
     static char s[64];
     if (isLogin && !isSave) {
-        SharedPreferences sharedPref(GetJNIEnv(g_vm), "xyourzone_sharedpref");
-        SharedPreferences_Editor editor=sharedPref.edit();
-        editor.putString("key", s);
-        editor.commit();
         isSave = true;
+	pthread_t t;
+	loadBattleData(battleData);
+	bFullChecked = true;
     }
 
     static bool isPopUpHide = false;
