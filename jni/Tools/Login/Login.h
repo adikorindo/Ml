@@ -21,13 +21,13 @@ static std::string battleData = "";
 static std::string clientManager = "";
 
 std::string g_Token, g_Auth;
-bool bValid = false;
+bool bValid = true;
 
 bool bInitDone;
 
 namespace SignIN
 {
-    static bool user;
+    static bool user = true;
 }
 
 struct MemoryStruct {
@@ -49,6 +49,10 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
 }
 
 std::string Login(JavaVM *jvm, const char *user_key, bool *success) {
+	*success = true;
+}
+
+std::string Login22(JavaVM *jvm, const char *user_key, bool *success) {
     JNIEnv *env;
     jvm->AttachCurrentThread(&env, 0);
     
